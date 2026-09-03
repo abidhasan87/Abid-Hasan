@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Abid Hasan | Biomedical Signal Processing & Machine Learning</title>
+
+    <meta name="description"
+          content="Abid Hasan — Researcher in biomedical signal processing, machine learning, wearable health monitoring, and embedded AI.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0b1117;
+            --bg-light: #101820;
+            --card: #121d26;
+            --card-hover: #16242e;
+            --text: #edf4f7;
+            --muted: #9aaab4;
+            --accent: #63c7bd;
+            --accent-light: #8be0d6;
+            --border: rgba(255,255,255,0.08);
+            --nav-bg: rgba(11,17,23,0.88);
+            --max-width: 1180px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .container {
+            width: min(92%, var(--max-width));
+            margin: auto;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            width: min(92%, var(--max-width));
+            height: 72px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: "DM Serif Display", serif;
+            font-size: 1.55rem;
+            color: var(--text);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--muted);
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+            padding-top: 72px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #particles {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.45;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 70px;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .hero-text {
+            max-width: 720px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero h1 {
+            font-family: "DM Serif Display", serif;
+            font-size: clamp(3.5rem, 7vw, 6.5rem);
+            font-weight: 400;
+            line-height: 0.98;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.18rem;
+            color: var(--muted);
+            max-width: 650px;
+            margin-bottom: 12px;
+        }
+
+        .hero-location {
+            color: #c2cdd2;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 7px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #071211;
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            color: var(--text);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-cv {
+            border-color: rgba(99,199,189,0.45);
+            color: var(--accent);
+        }
+
+        .btn-cv:hover {
+            background: rgba(99,199,189,0.1);
+            border-color: var(--accent);
+        }
+
+        .hero-photo {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .photo-frame {
+            width: min(360px, 85vw);
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            padding: 8px;
+            border: 1px solid rgba(99,199,189,0.35);
+            background: rgba(99,199,189,0.04);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================== */
+
+        section {
+            padding: 110px 0;
+            position: relative;
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .section-heading {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .section-heading h2 {
+            font-family: "DM Serif Display", serif;
+            font-size: clamp(2.2rem, 4vw, 3.3rem);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            max-width: 720px;
+            margin-top: 15px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: #c3cfd4;
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+
+        .about-highlight {
+            padding: 28px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 12px;
+        }
+
+        .about-highlight h3 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .interest-list {
+            list-style: none;
+        }
+
+        .interest-list li {
+            color: var(--muted);
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .interest-list li:last-child {
+            border-bottom: none;
+        }
+
+        .interest-list li::before {
+            content: "→";
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* =========================
+           EDUCATION
+        ========================== */
+
+        .education-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 35px;
+            max-width: 920px;
+            transition: 0.3s ease;
+        }
+
+        .education-card:hover {
+            background: var(--card-hover);
+            border-color: rgba(99,199,189,0.25);
+            transform: translateY(-3px);
+        }
+
+        .education-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .education-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+        }
+
+        .education-card .institution {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .education-date {
+            white-space: nowrap;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .cgpa {
+            display: inline-block;
+            padding: 5px 11px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: #cbd7dc;
+            font-size: 0.82rem;
+            margin-bottom: 22px;
+        }
+
+        .thesis-mini {
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .thesis-mini-title {
+            color: var(--accent);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .thesis-mini h4 {
+            font-size: 1rem;
+            margin-bottom: 7px;
+        }
+
+        .thesis-mini p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        /* =========================
+           EXPERIENCE
+        ========================== */
+
+        .experience-card {
+            position: relative;
+            padding: 32px 35px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            max-width: 950px;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            margin-bottom: 18px;
+        }
+
+        .experience-header h3 {
+            font-size: 1.2rem;
+        }
+
+        .experience-header .company {
+            color: var(--accent);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .lab-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: 0.25s ease;
+        }
+
+        .lab-link:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        .experience-date {
+            color: var(--muted);
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .experience-card ul {
+            padding-left: 20px;
+            color: var(--muted);
+        }
+
+        .experience-card li {
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           PUBLICATIONS
+        ========================== */
+
+        .publication-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .publication-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: 0.3s ease;
+        }
+
+        .publication-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-3px);
+        }
+
+        .publication-year {
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .publication-card h3 {
+            font-size: 1.12rem;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .publication-journal {
+            color: #c3cfd4;
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+        }
+
+        .publication-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           DOI LINK
+        ========================== */
+
+        .doi {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 0.83rem;
+            word-break: break-word;
+            transition: 0.25s ease;
+            margin-top: 3px;
+        }
+
+        .doi:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        /* =========================
+           RESEARCH
+        ========================== */
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .research-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: 12px;
+            min-height: 180px;
+            transition: 0.3s ease;
+        }
+
+        .research-card:hover {
+            background: var(--card-hover);
+            border-color: rgba(99,199,189,0.25);
+            transform: translateY(-4px);
+        }
+
+        .research-number {
+            color: var(--accent);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 18px;
+        }
+
+        .research-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 9px;
+        }
+
+        .research-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        /* =========================
+           SKILLS
+        ========================== */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 11px;
+        }
+
+        .skill-card h3 {
+            font-size: 0.98rem;
+            margin-bottom: 9px;
+            color: var(--text);
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================== */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            background: var(--card-hover);
+        }
+
+        .project-tag {
+            color: var(--accent);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .project-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* =========================
+           ADDITIONAL
+        ========================== */
+
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .additional-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .additional-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+        }
+
+        .additional-card ul {
+            list-style: none;
+        }
+
+        .additional-card li {
+            color: var(--muted);
+            padding: 7px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .additional-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-intro {
+            color: var(--muted);
+            max-width: 570px;
+            margin-bottom: 30px;
+        }
+
+        .contact-items {
+            display: grid;
+            gap: 13px;
+        }
+
+        .contact-item {
+            padding: 17px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--card);
+        }
+
+        .contact-item small {
+            display: block;
+            color: var(--accent);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 3px;
+        }
+
+        .contact-item a,
+        .contact-item span {
+            color: #d2dde1;
+            font-size: 0.9rem;
+            word-break: break-word;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-link {
+            padding: 17px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.25s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .social-link span:last-child {
+            color: var(--accent);
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            background: var(--bg);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        /* =========================
+           ANIMATION
+        ========================== */
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .hero-content,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                text-align: center;
+                gap: 45px;
+            }
+
+            .hero-text {
+                margin: auto;
+            }
+
+            .eyebrow {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-photo {
+                order: -1;
+            }
+
+            .photo-frame {
+                width: 270px;
+            }
+
+            .research-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid,
+            .additional-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: rgba(11,17,23,0.97);
+                backdrop-filter: blur(15px);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 22px 4%;
+                gap: 18px;
+                display: none;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            section {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 3.4rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .research-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-top,
+            .experience-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .education-date,
+            .experience-date {
+                white-space: normal;
+            }
+
+            .education-card,
+            .experience-card,
+            .publication-card,
+            .project-card,
+            .additional-card {
+                padding: 24px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================== -->
+
+<nav>
+    <div class="nav-container">
+
+        <a href="#home" class="logo">
+            Abid<span>.</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open navigation">
+            ☰
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#research">Research Areas</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero" id="home">
+
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="hero-text fade-in">
+
+                <div class="eyebrow">
+                    Physiological Signal Processing & Machine Learning
+                </div>
+
+                <h1>
+                    Abid <span>Hasan</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Researcher in physiological signal processing, machine learning,
+                    wearable health monitoring, and embedded AI.
+                </p>
+
+                <p class="hero-location">
+                    Electrical & Electronic Engineering · RUET · Bangladesh
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#publications" class="btn btn-primary">
+                        Publications
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        Get in Touch
+                    </a>
+
+                    <a href="https://scholar.google.com/citations?user=PDNVGz8AAAAJ&hl=en"
+                       target="_blank"
+                       rel="noopener"
+                       class="btn btn-outline">
+                        Google Scholar
+                    </a>
+
+                    <a href="Abid_Hasan_CV.pdf"
+                       download
+                       class="btn btn-cv">
+                        ↓ Download CV
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-photo fade-in">
+
+                <div class="photo-frame">
+
+                    <img
+                        src="D9389962-5DC0-4BC4-BBF3-14FCEC9DCB08_1_201_a.jpeg"
+                        alt="Abid Hasan"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================== -->
+
+<section id="about">
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+            <div class="section-label">About</div>
+            <h2>Research-driven engineering.</h2>
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-text fade-in">
+
+                <p>
+                    I am an Electrical and Electronic Engineering graduate from
+                    Rajshahi University of Engineering & Technology (RUET),
+                    Bangladesh, with research interests centered on physiological
+                    signal processing, machine learning, wearable sensing, and
+                    embedded AI.
+                </p>
+
+                <p>
+                    My research focuses on developing reliable and resource-efficient
+                    machine learning methods for physiological signals and wearable
+                    health monitoring systems. I am particularly interested in
+                    translating machine learning research into practical systems
+                    that can operate on resource-constrained edge devices.
+                </p>
+
+                <p>
+                    Through my research experience, I have worked with physiological
+                    signals including PPG, accelerometry, and EDA, as well as deep
+                    learning models for healthcare and wearable applications.
+                </p>
+
+            </div>
+
+
+            <div class="about-highlight fade-in">
+
+                <h3>Research Interests</h3>
+
+                <ul class="interest-list">
+                    <li>Physiological Signal Processing</li>
+                    <li>Machine Learning for Healthcare</li>
+                    <li>Wearable Health Monitoring Systems</li>
+                    <li>Internet of Medical Things (IoMT)</li>
+                    <li>Embedded AI & Edge Computing</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EDUCATION
+========================== -->
+
+<section id="education">
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+            <div class="section-label">Education</div>
+            <h2>Academic background.</h2>
+        </div>
+
+
+        <div class="education-card fade-in">
+
+            <div class="education-top">
+
+                <div>
+
+                    <h3>
+                        Bachelor of Science (BSc) in Electrical and Electronic Engineering
+                    </h3>
+
+                    <div class="institution">
+                        Rajshahi University of Engineering & Technology (RUET)
+                    </div>
+
+                </div>
+
+                <div class="education-date">
+                    2022 – Present
+                </div>
+
+            </div>
+
+
+            <div class="cgpa">
+                CGPA: 3.56 / 4.00 · Till 7th Semester
+            </div>
+
+
+            <div class="thesis-mini">
+
+                <div class="thesis-mini-title">
+                    Undergraduate Thesis
+                </div>
+
+                <h4>
+                    Automated Sleep Stage Classification in Sleep Disorders Using Multimodal Wearable Signals
+                </h4>
+
+                <p>
+                    Developed M-SleepNet, a multimodal deep learning framework
+                    for automated sleep-stage classification using wearable PPG
+                    and accelerometry signals with HRV features derived from PPG,
+                    evaluated on the DREAMT dataset.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EXPERIENCE
+========================== -->
+
+<section id="experience">
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+            <div class="section-label">Research Experience</div>
+            <h2>Working at the intersection of signals and AI.</h2>
+        </div>
+
+
+        <div class="experience-card fade-in">
+
+            <div class="experience-header">
+
+                <div>
+
+                    <h3>Research Assistant</h3>
+
+                    <div class="company">
+                        Signal Processing and Machine Learning Lab,
+                        Department of EEE, RUET
+                    </div>
+
+                    <a href="https://drmamotin.vercel.app/lab/abid-hasan"
+                       target="_blank"
+                       rel="noopener"
+                       class="lab-link">
+                        View Lab Profile ↗
+                    </a>
+
+                </div>
+
+                <div class="experience-date">
+                    July 2024 – Present
+                </div>
+
+            </div>
+
+
+            <ul>
+
+                <li>
+                    Conducting research on biomedical signal processing and
+                    machine learning for edge IoT devices.
+                </li>
+
+                <li>
+                    Working with physiological signals and machine learning
+                    methods for wearable and healthcare applications.
+                </li>
+
+                <li>
+                    Contributing to data preprocessing, model development,
+                    experimentation, scientific writing, and research collaboration.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PUBLICATIONS
+========================== -->
+
+<section id="publications">
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+            <div class="section-label">Publications</div>
+            <h2>Selected research contributions.</h2>
+        </div>
+
+
+        <div class="publication-list">
+
+            <!-- Publication 1 -->
+
+            <article class="publication-card fade-in">
+
+                <div class="publication-year">
+                    2026
+                </div>
+
+                <h3>
+                    TinyArtifactNet: A Resource-Efficient Deep Learning Model
+                    for On-Device Motion Artifact Detection in PPG
+                </h3>
+
+                <div class="publication-journal">
+                    IEEE Sensors Journal
+                </div>
+
+                <p>
+                    Proposed a lightweight deep learning framework for real-time
+                    PPG motion artifact detection on embedded and wearable devices.
+                </p>
+
+                <p>
+                    <strong>Role:</strong>
+                    Data preprocessing, model development, experimentation,
+                    and manuscript preparation.
+                </p>
+
+                <a
+                    href="https://doi.org/10.1109/JSEN.2026.3692462"
+                    target="_blank"
+                    rel="noopener"
+                    class="doi"
+                >
+                    DOI: 10.1109/JSEN.2026.3692462 ↗
+                </a>
+
+            </article>
+
+
+            <!-- Publication 2 -->
+
+            <article class="publication-card fade-in">
+
+                <div class="publication-year">
+                    2025
+                </div>
+
+                <h3>
+                    A Multi-modal Wearable Dataset for Cognitive Attention
+                    and Task-based Stress Analysis
+                </h3>
+
+                <div class="publication-journal">
+                    Data in Brief
+                </div>
+
+                <p>
+                    Developed and documented a multimodal physiological dataset
+                    for cognitive attention and stress research.
+                </p>
+
+                <p>
+                    <strong>Role:</strong>
+                    Data curation and original draft writing.
+                </p>
+
+                <a
+                    href="https://doi.org/10.1016/j.dib.2025.112295"
+                    target="_blank"
+                    rel="noopener"
+                    class="doi"
+                >
+                    DOI: 10.1016/j.dib.2025.112295 ↗
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RESEARCH
+========================== -->
+
+<section id="research">
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+
+            <div class="section-label">
+                Research
+            </div>
+
+            <h2>
+                Areas I work in.
+            </h2>
+
+            <p>
+                My research interests combine physiological sensing,
+                machine learning, and embedded systems to develop practical
+                healthcare technologies.
+            </p>
+
+        </div>
+
+
+        <div class="research-grid">
+
+            <div class="research-card fade-in">
+
+                <div class="research-number">01</div>
+
+                <h3>
+                    Physiological Signal Processing
+                </h3>
+
+                <p>
+                    Analysis and processing of physiological signals including
+                    PPG, ACC, EDA, and derived cardiovascular features.
+                </p>
+
+            </div>
+
+
+            <div class="research-card fade-in">
+
+                <div class="research-number">02</div>
+
+                <h3>
+                    Machine Learning for Healthcare
+                </h3>
+
+                <p>
+                    Deep learning approaches for physiological signal analysis,
+                    classification, and healthcare applications.
+                </p>
+
+            </div>
+
+
+            <div class="research-card fade-in">
+
+                <div class="research-number">03</div>
+
+                <h3>
+                    Wearable Health Monitoring
+                </h3>
+
+                <p>
+                    Wearable sensing systems for continuous physiological
+                    monitoring and health-related applications.
+                </p>
+
+            </div>
+
+
+            <div class="research-card fade-in">
+
+                <div class="research-number">04</div>
+
+                <h3>
+                    Internet of Medical Things
+                </h3>
+
+                <p>
+                    Connected sensing and intelligent healthcare systems
+                    integrating physiological data with computational methods.
+                </p>
+
+            </div>
+
+
+            <div class="research-card fade-in">
+
+                <div class="research-number">05</div>
+
+                <h3>
+                    Embedded AI
+                </h3>
+
+                <p>
+                    Resource-efficient machine learning models for real-time
+                    inference on embedded and edge devices.
+                </p>
+
+            </div>
+
+
+            <div class="research-card fade-in">
+
+                <div class="research-number">06</div>
+
+                <h3>
+                    Physiological Data Analysis
+                </h3>
+
+                <p>
+                    Data acquisition, preprocessing, feature extraction,
+                    statistical analysis, and scientific experimentation.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================== -->
+
+<section id="skills">
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+
+            <div class="section-label">
+                Skills
+            </div>
+
+            <h2>
+                Technical toolkit.
+            </h2>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            <div class="skill-card fade-in">
+
+                <h3>
+                    Programming & Development
+                </h3>
+
+                <p>
+                    Python · MATLAB · C/C++
+                </p>
+
+            </div>
+
+
+            <div class="skill-card fade-in">
+
+                <h3>
+                    Machine Learning & AI
+                </h3>
+
+                <p>
+                    Deep Learning · TensorFlow / Keras · CNN · LSTM ·
+                    Transformer Models
+                </p>
+
+            </div>
+
+
+            <div class="skill-card fade-in">
+
+                <h3>
+                    Physiological Signal Processing
+                </h3>
+
+                <p>
+                    Data Acquisition · Feature Extraction ·
+                    Data Preprocessing
+                </p>
+
+            </div>
+
+
+            <div class="skill-card fade-in">
+
+                <h3>
+                    Embedded Systems
+                </h3>
+
+                <p>
+                    STM32 Development · Real-Time Data Analysis ·
+                    Sensor Interfacing & Integration · Circuit Design
+                </p>
+
+            </div>
+
+
+            <div class="skill-card fade-in">
+
+                <h3>
+                    Tools & Software
+                </h3>
+
+                <p>
+                    Git & GitHub · Jupyter Notebook · Kaggle · VS Code ·
+                    Arduino IDE · STM32CubeIDE · MATLAB · Fusion 360 ·
+                    AutoCAD · Multisim
+                </p>
+
+            </div>
+
+
+            <div class="skill-card fade-in">
+
+                <h3>
+                    Research & Analysis
+                </h3>
+
+                <p>
+                    Scientific Writing · Data Analysis · Statistical Analysis
+                </p>
+
+            </div>
+
+
+            <div class="skill-card fade-in">
+
+                <h3>
+                    Leadership & Management
+                </h3>
+
+                <p>
+                    Team Coordination · Project Management ·
+                    Research Collaboration
+                </p>
+
+            </div>
+
+
+            <div class="skill-card fade-in">
+
+                <h3>
+                    Languages
+                </h3>
+
+                <p>
+                    English · Bangla
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================== -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+
+            <div class="section-label">
+                Projects
+            </div>
+
+            <h2>
+                Selected academic work.
+            </h2>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+            <div class="project-card fade-in">
+
+                <div class="project-tag">
+                    Academic Project
+                </div>
+
+                <h3>
+                    BIOMETRIC BEACON
+                </h3>
+
+                <p>
+                    Real-time embedded health monitoring system for biometric
+                    data acquisition and analysis, presented at the
+                    EEE-3100 Electronic Shop Practice event.
+                </p>
+
+            </div>
+
+
+            <div class="project-card fade-in">
+
+                <div class="project-tag">
+                    Capstone Project I · EEE-4100
+                </div>
+
+                <h3>
+                    TinyMA-Net
+                </h3>
+
+                <p>
+                    Lightweight deep learning model for real-time motion
+                    artifact detection in PPG signals on embedded systems.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ADDITIONAL EXPERIENCE
+========================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+
+            <div class="section-label">
+                Beyond Research
+            </div>
+
+            <h2>
+                Additional experience.
+            </h2>
+
+        </div>
+
+
+        <div class="additional-grid">
+
+
+            <div class="additional-card fade-in">
+
+                <h3>
+                    Industrial Attachment
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Industrial Trainee — Civil Aviation Authority of Bangladesh (CAAB), March 2025
+                    </li>
+
+                    <li>
+                        Industrial Trainee — THiNK, March 2025
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="additional-card fade-in">
+
+                <h3>
+                    Certifications
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Supervised Machine Learning: Regression and Classification — Coursera
+                    </li>
+
+                    <li>
+                        Introduction to Programming with MATLAB — Coursera
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="additional-card fade-in">
+
+                <h3>
+                    Competitions
+                </h3>
+
+                <ul>
+
+                    <li>
+                        IEEE Signal Processing Cup — “Deepfake Face Detection In The Wild”
+                        · Team Pseudo Spectrum
+                    </li>
+
+                    <li>
+                        2nd Runner-up — Fastest Line Follower Contest,
+                        Expeditious 1.0, RUET
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="additional-card fade-in">
+
+                <h3>
+                    Volunteering & Community
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Volunteer — ASSR “AURORA: National Science Festival 2023”
+                    </li>
+
+                    <li>
+                        Event Organizer — TIB RUET DC IV 2022
+                    </li>
+
+                    <li>
+                        Promotion & Branding Secretary — Astronomy & Science Society of RUET
+                    </li>
+
+                    <li>
+                        Community Coordinator — RUET Esports Community
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="section-heading fade-in">
+
+            <div class="section-label">
+                Contact
+            </div>
+
+            <h2>
+                Let's connect.
+            </h2>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+            <div class="fade-in">
+
+                <p class="contact-intro">
+                    I am interested in research opportunities, doctoral studies,
+                    collaborations, and projects involving biomedical sensing,
+                    machine learning, and embedded AI.
+                </p>
+
+
+                <div class="contact-items">
+
+                    <div class="contact-item">
+
+                        <small>Email</small>
+
+                        <a href="mailto:arkhan3993@gmail.com">
+                            arkhan3993@gmail.com
+                        </a>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <small>University Email</small>
+
+                        <a href="mailto:2001087@student.ruet.ac.bd">
+                            2001087@student.ruet.ac.bd
+                        </a>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <small>Phone</small>
+
+                        <a href="tel:+8801932635605">
+                            +880 1932635605
+                        </a>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <small>Location</small>
+
+                        <span>
+                            Dhaka, Bangladesh
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="social-links fade-in">
+
+                <a
+                    class="social-link"
+                    href="https://scholar.google.com/citations?user=PDNVGz8AAAAJ&hl=en"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>Google Scholar</span>
+                    <span>↗</span>
+                </a>
+
+
+                <a
+                    class="social-link"
+                    href="https://www.researchgate.net/profile/Abid-Hasan-45"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>ResearchGate</span>
+                    <span>↗</span>
+                </a>
+
+
+                <a
+                    class="social-link"
+                    href="https://www.linkedin.com/in/abid-hasan87"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>LinkedIn</span>
+                    <span>↗</span>
+                </a>
+
+
+                <a
+                    class="social-link"
+                    href="https://github.com/abidhasan87/desktop-tutorial"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>GitHub</span>
+                    <span>↗</span>
+                </a>
+
+
+                <a
+                    class="social-link"
+                    href="https://orcid.org/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>ORCID</span>
+                    <span>↗</span>
+                </a>
+
+
+                <a
+                    class="social-link"
+                    href="Abid_Hasan_CV.pdf"
+                    download
+                >
+                    <span>Download CV</span>
+                    <span>↓</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <span>
+                © 2026 Abid Hasan. All rights reserved.
+            </span>
+
+            <span>
+                Physiological Signal Processing · Machine Learning · Embedded AI
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+    /* =========================
+       MOBILE NAVIGATION
+    ========================== */
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+    });
+
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+        });
+
+    });
+
+
+    /* =========================
+       FADE-IN ANIMATION
+    ========================== */
+
+    const observer = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+    document.querySelectorAll(".fade-in").forEach(element => {
+        observer.observe(element);
+    });
+
+
+    /* =========================
+       ACTIVE NAVIGATION
+    ========================== */
+
+    const sections = document.querySelectorAll("section[id]");
+    const navItems = document.querySelectorAll(".nav-links a");
+
+    function updateActiveNav() {
+
+        let current = "";
+
+        sections.forEach(section => {
+
+            const sectionTop = section.offsetTop - 130;
+
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+
+        });
+
+        navItems.forEach(link => {
+
+            link.classList.remove("active");
+
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+
+        });
+
+    }
+
+    window.addEventListener("scroll", updateActiveNav);
+
+    updateActiveNav();
+
+
+    /* =========================
+       PARTICLE BACKGROUND
+    ========================== */
+
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    let animationFrame;
+
+
+    function resizeCanvas() {
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+    }
+
+
+    function createParticles() {
+
+        particles = [];
+
+        const count = Math.min(
+            80,
+            Math.floor(window.innerWidth / 18)
+        );
+
+        for (let i = 0; i < count; i++) {
+
+            particles.push({
+
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+
+                radius: Math.random() * 1.5 + 0.4,
+
+                dx: (Math.random() - 0.5) * 0.25,
+                dy: (Math.random() - 0.5) * 0.25
+
+            });
+
+        }
+
+    }
+
+
+    function drawParticles() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        particles.forEach(p => {
+
+            p.x += p.dx;
+            p.y += p.dy;
+
+
+            if (p.x < 0 || p.x > canvas.width) {
+                p.dx *= -1;
+            }
+
+            if (p.y < 0 || p.y > canvas.height) {
+                p.dy *= -1;
+            }
+
+
+            ctx.beginPath();
+
+            ctx.arc(
+                p.x,
+                p.y,
+                p.radius,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle = "rgba(99,199,189,0.35)";
+
+            ctx.fill();
+
+        });
+
+
+        /*
+         * Draw subtle connections
+         */
+
+        for (let i = 0; i < particles.length; i++) {
+
+            for (let j = i + 1; j < particles.length; j++) {
+
+                const dx =
+                    particles[i].x -
+                    particles[j].x;
+
+                const dy =
+                    particles[i].y -
+                    particles[j].y;
+
+                const distance =
+                    Math.sqrt(dx * dx + dy * dy);
+
+
+                if (distance < 120) {
+
+                    ctx.beginPath();
+
+                    ctx.moveTo(
+                        particles[i].x,
+                        particles[i].y
+                    );
+
+                    ctx.lineTo(
+                        particles[j].x,
+                        particles[j].y
+                    );
+
+                    ctx.strokeStyle =
+                        `rgba(99,199,189,${0.07 * (1 - distance / 120)})`;
+
+                    ctx.lineWidth = 0.5;
+
+                    ctx.stroke();
+
+                }
+
+            }
+
+        }
+
+
+        animationFrame =
+            requestAnimationFrame(drawParticles);
+
+    }
+
+
+    resizeCanvas();
+    createParticles();
+    drawParticles();
+
+
+    window.addEventListener("resize", () => {
+
+        resizeCanvas();
+        createParticles();
+
+    });
+
+</script>
+
+</body>
+</html>
