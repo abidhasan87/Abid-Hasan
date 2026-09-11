@@ -473,7 +473,11 @@
            PROJECTS
         ========================== */
 
-        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
 
         .project-card { background: var(--bg); border: 1px solid var(--line); border-radius: 3px; padding: 32px; }
         .project-tag { color: var(--accent); font-size: 0.75rem; font-weight: 700; margin-bottom: 10px; }
@@ -550,6 +554,196 @@
 
         .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Expandable photo sections */
+        .expand-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-toggle .chevron {
+            transition: transform 0.25s ease;
+            display: inline-flex;
+        }
+
+        .expand-toggle.open .chevron { transform: rotate(180deg); }
+
+        .expand-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .expand-panel.open { max-height: 1200px; }
+
+        .abstract-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .figure-item {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .figure-item:hover {
+            box-shadow: 0 8px 24px rgba(29,53,87,0.12);
+            transform: translateY(-2px);
+        }
+
+        .figure-thumb {
+            position: relative;
+            background: var(--bg-alt);
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+
+        .figure-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .figure-thumb:hover img { transform: scale(1.04); }
+
+        .figure-thumb::after {
+            content: "⤢";
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(27,31,35,0.55);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .figure-thumb:hover::after { opacity: 1; }
+
+        .figure-caption {
+            padding: 10px 14px;
+            font-size: 0.8rem;
+            color: var(--muted);
+            border-top: 1px solid var(--line);
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .photo-gallery img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--line);
+            cursor: zoom-in;
+            transition: opacity 0.2s ease;
+        }
+
+        .photo-gallery img:hover { opacity: 0.85; }
+
+        /* Lightbox for full-size viewing */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.open { display: flex; }
+
+        .lightbox-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 90%;
+            max-height: 90%;
+            cursor: default;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 78vh;
+            border-radius: 4px;
+            object-fit: contain;
+        }
+
+        .lightbox-caption {
+            color: #f0f0f0;
+            font-size: 0.9rem;
+            margin-top: 14px;
+            text-align: center;
+            max-width: 640px;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.12);
+            border: none;
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+        .lightbox-prev { left: 24px; }
+        .lightbox-next { right: 24px; }
+
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        @media (max-width: 650px) {
+            .photo-gallery img { height: 100px; }
+            .abstract-gallery img { max-height: 320px; }
+        }
 
         /* =========================
            RESPONSIVE
@@ -859,6 +1053,31 @@
                     <p><strong>Role:</strong> Data preprocessing, model development, experimentation, and manuscript preparation.</p>
 
                     <a href="https://doi.org/10.1109/JSEN.2026.3692462" target="_blank" rel="noopener" class="doi">DOI: 10.1109/JSEN.2026.3692462 ↗</a>
+                    <button class="expand-toggle" onclick="toggleExpand('abstract-pub1', this)">
+                        <span>View Figures</span><span class="chevron">▾</span>
+                    </button>
+                    <div class="expand-panel" id="abstract-pub1">
+                        <div class="abstract-gallery" data-gallery="pub1">
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('pub1', 0)">
+                                    <img src="Grapical Abstract-Final-2.png" alt="Graphical abstract - TinyArtifactNet">
+                                </div>
+                                <figcaption class="figure-caption">Graphical abstract</figcaption>
+                            </figure>
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('pub1', 1)">
+                                    <img src="real_time_setup_4.png" alt="Real-time setup - TinyArtifactNet">
+                                </div>
+                                <figcaption class="figure-caption">Real-time hardware setup</figcaption>
+                            </figure>
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('pub1', 2)">
+                                    <img src="study_pipeline_2.png" alt="Study pipeline - TinyArtifactNet">
+                                </div>
+                                <figcaption class="figure-caption">Study pipeline</figcaption>
+                            </figure>
+                        </div>
+                    </div>
                 </article>
 
                 <article class="publication-card">
@@ -880,6 +1099,31 @@
                     <p><strong>Role:</strong> Data curation and original draft writing.</p>
 
                     <a href="https://doi.org/10.1016/j.dib.2025.112295" target="_blank" rel="noopener" class="doi">DOI: 10.1016/j.dib.2025.112295 ↗</a>
+                    <button class="expand-toggle" onclick="toggleExpand('abstract-pub2', this)">
+                        <span>View figures</span><span class="chevron">▾</span>
+                    </button>
+                    <div class="expand-panel" id="abstract-pub2">
+                        <div class="abstract-gallery" data-gallery="pub2">
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('pub2', 0)">
+                                    <img src="signals.jpg" alt="Signals plot - CATSA">
+                                </div>
+                                <figcaption class="figure-caption">Physiological signals plot</figcaption>
+                            </figure>
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('pub2', 1)">
+                                    <img src="Experimental setup.jpg" alt="Experimental setup - CATSA">
+                                </div>
+                                <figcaption class="figure-caption">Experimental setup</figcaption>
+                            </figure>
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('pub2', 2)">
+                                    <img src="algorithm.jpg" alt="Flow chart - CATSA">
+                                </div>
+                                <figcaption class="figure-caption">Algorithm / flow chart</figcaption>
+                            </figure>
+                        </div>
+                    </div>
                 </article>
 
                 <!-- Publication 3: Ongoing -->
@@ -1070,10 +1314,11 @@
 </section>
 
 
+
 <!-- =========================
      PROJECTS
 ========================== -->
-
+ 
 <section id="projects">
     <div class="container">
 
@@ -1101,12 +1346,54 @@
                     <div class="project-tag">Capstone Project I · EEE-4100</div>
                     <h3>TinyMA-Net</h3>
                     <p>Lightweight deep learning model for real-time motion artifact detection in PPG signals on embedded systems.</p>
+
+                    <button class="expand-toggle" onclick="toggleExpand('gallery-capstone1', this)">
+                        <span>View setup photos</span><span class="chevron">▾</span>
+                    </button>
+                    <div class="expand-panel" id="gallery-capstone1">
+                        <div class="abstract-gallery" data-gallery="capstone1">
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('capstone1', 0)">
+                                    <img src="TinyMA-Net Research Poster (3)-1.png" alt="TinyMA-Net poster">
+                                </div>
+                                <figcaption class="figure-caption">Research poster</figcaption>
+                            </figure>
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('capstone1', 1)">
+                                    <img src="TinyMANEt_Setup.jpg" alt="TinyMA-Net setup photo">
+                                </div>
+                                <figcaption class="figure-caption">Experimental setup</figcaption>
+                            </figure>
+                            <!-- add more <figure class="figure-item">...</figure> blocks here, incrementing the openLightbox index -->
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card fade-in">
                     <div class="project-tag">Capstone Project II · EEE-4200</div>
                     <h3>TinyArtifactNet</h3>
                     <p>Real-time artifact detection framework extending the TinyMA-Net line of work, refined into the resource-efficient deep learning model published in IEEE Sensors Journal for on-device motion artifact detection in PPG.</p>
+
+                    <button class="expand-toggle" onclick="toggleExpand('gallery-capstone2', this)">
+                        <span>View setup photos</span><span class="chevron">▾</span>
+                    </button>
+                    <div class="expand-panel" id="gallery-capstone2">
+                        <div class="abstract-gallery" data-gallery="capstone2">
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('capstone2', 0)">
+                                    <img src="TinyArtifactNet A Resource-Efficient Deep Learning Model for On-Device Motion Artifact Detection in PPG_page-0001.jpg" alt="TinyArtifactNet poster">
+                                </div>
+                                <figcaption class="figure-caption">Research poster</figcaption>
+                            </figure>
+                            <figure class="figure-item">
+                                <div class="figure-thumb" onclick="openLightbox('capstone2', 1)">
+                                    <img src="TinyArtifactNet.jpg" alt="TinyArtifactNet setup photo">
+                                </div>
+                                <figcaption class="figure-caption">Experimental setup</figcaption>
+                            </figure>
+                            <!-- add more <figure class="figure-item">...</figure> blocks here, incrementing the openLightbox index -->
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -1114,6 +1401,7 @@
 
     </div>
 </section>
+ 
 
 
 <!-- =========================
@@ -1641,7 +1929,68 @@
             drawTrace(ppg, ppgShape);
         }
     })();
-</script>
 
+    function toggleExpand(id, btn) {
+        document.getElementById(id).classList.toggle('open');
+        btn.classList.toggle('open');
+    }
+
+    let currentGalleryImages = [];
+    let currentGalleryIndex = 0;
+
+    function openLightbox(galleryName, index) {
+        const galleryEl = document.querySelector(`.abstract-gallery[data-gallery="${galleryName}"]`);
+        if (!galleryEl) return;
+
+        currentGalleryImages = Array.from(galleryEl.querySelectorAll('.figure-item')).map(item => ({
+            src: item.querySelector('img').src,
+            alt: item.querySelector('img').alt,
+            caption: item.querySelector('.figure-caption')?.textContent || ''
+        }));
+        currentGalleryIndex = index;
+        renderLightbox();
+
+        document.getElementById('lightboxOverlay').classList.add('open');
+    }
+
+    function renderLightbox() {
+        const item = currentGalleryImages[currentGalleryIndex];
+        if (!item) return;
+        const img = document.getElementById('lightboxImage');
+        img.src = item.src;
+        img.alt = item.alt;
+        document.getElementById('lightboxCaption').textContent = item.caption;
+    }
+
+    function navLightbox(direction) {
+        if (!currentGalleryImages.length) return;
+        currentGalleryIndex = (currentGalleryIndex + direction + currentGalleryImages.length) % currentGalleryImages.length;
+        renderLightbox();
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightboxOverlay').classList.remove('open');
+        document.getElementById('lightboxImage').src = '';
+    }
+
+    document.getElementById('lightboxOverlay').addEventListener('click', closeLightbox);
+
+    document.addEventListener('keydown', function (e) {
+        const overlay = document.getElementById('lightboxOverlay');
+        if (!overlay.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') navLightbox(1);
+        if (e.key === 'ArrowLeft') navLightbox(-1);
+    });
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1); event.stopPropagation();">&#8249;</button>
+    <div class="lightbox-content" onclick="event.stopPropagation();">
+        <img src="" alt="" id="lightboxImage">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+    <button class="lightbox-nav lightbox-next" onclick="navLightbox(1); event.stopPropagation();">&#8250;</button>
+</div>
 </body>
 </html>
